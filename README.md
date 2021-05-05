@@ -32,7 +32,15 @@ user this command:
 
     ./slack-advanced-exporter --input-archive your-slack-team-export.zip --output-archive export-with-emails.zip fetch-emails --api-token xoxp-123...
 
-You'll need to obtain an API token [here](https://api.slack.com/docs/oauth-test-tokens).
+You'll need to get an OAuth Token with the appropriate permissions.
+
+To do this:
+- Create a Slack app (ex. "Mattermost Export")
+- Within the app's `OAuth & Permissions` section add the scopes: 
+  - `users:read`
+  - `users:read.email`
+- Install app in your workplace
+- Copy the User OAuth Token generated
 
 ### Add all the File Attachments to your export.
 
@@ -60,5 +68,3 @@ Pull requests are welcome. Please ensure that you comply with the requirements b
 * Only data that is not included in the official team export feature should be exported by this
   tool - if it's already in the official export, there's no need for it here.
 * Ensure you only request what is needed, to avoid unnecessary load being placed on servers.
-
-

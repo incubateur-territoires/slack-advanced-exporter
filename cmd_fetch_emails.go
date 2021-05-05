@@ -134,7 +134,19 @@ func processUsersJson(output io.Writer, input io.Reader, slackApiToken string) e
 }
 
 func fetchUserEmails(token string) (map[string]string, error) {
-	resp, err := http.Get("https://slack.com/api/users.list?token=" + url.QueryEscape(token))
+	// Create a Bearer string by appending string access token
+	var bearer = "Bearer " + url.QueryEscape(token)
+	
+	// Create a Bearer string by appending string access token
+	req, err := http.NewRequest("GET", "https://slack.com/api/users.list", nil)
+	
+	// add authorization header to the req
+	req.Header.Add("Authorization", bearer)
+	
+	// Send req using http Client
+	client := &http.Client{}
+	resp, err := client.Do(req)
+
 	if err != nil {
 		return nil, err
 	}
